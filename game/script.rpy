@@ -4,6 +4,9 @@ image bg fake_site = "images/bank.png"
 image bg blackboard = "images/bg_1.png" 
 image bg mail = "images/mail.png"
 image screem = "images/screem.png"
+image bg dialog = "images/bg dialog.png"
+image bg zvonok = "images/zvonok.png"
+image moshenik = "images/moshenik.png"
 
 # --- 2. Персонажи ---
 define p = Character("Костя")
@@ -16,6 +19,22 @@ define g = Character("Эйлаза", color="#1E90FF")
 transform kostya:
     zoom 0.5 # Уменьшить в 2 раза
     xalign 1.1 yalign 1.0
+
+transform moshenik:
+    xalign 0 yalign 1.5
+
+transform alaise:
+    zoom 1.1
+
+# Трансформация для говорящего (стандартная яркость)
+transform talk:
+    matrixcolor BrightnessMatrix(0.0)
+    ease 0.2 zoom 1.03
+
+# Трансформация для слушающего (затемнение)
+transform listen:
+    matrixcolor BrightnessMatrix(-0.2)
+    ease 0.2 zoom 1
 
 # --- 3. Начало игры ---
 label start:
@@ -82,13 +101,32 @@ label branch_click_link:
 
         "Ввести только номер карты":
             p "Я им только номер дам, это же безопасно, да?"
+            scene bg zvonok
             "Начинают поступать подозрительные звонки."
             p "О, звонок. Номер 900? А, нет, это +7 (900) ОO0-00-01. Вместо нулей — буквы «О». Креативно, ничего не скажешь."
             menu:
                 "Ответить на звонок":
-                    m "Вечер в хату... то есть, здравствуйте!  Служба безопасности, капитан Очевидность на связи. У вас там деньги улетают в Нарнию, срочно продиктуйте код из СМС!"
+                    scene bg dialog
+                    # Показываем обоих, мошенник начинает первым
+                    show moshenik at moshenik, talk zorder 2
+                    show screem at kostya, listen zorder 1
+                    
+                    m "Вечер в хату... то есть, здравствуйте! Служба безопасности, капитан Очевидность на связи. У вас там деньги улетают в Нарнию, срочно продиктуйте код из СМС!"
+                    
+                    # Переключаем фокус на Костю
+                    show moshenik at listen zorder 1
+                    show screem at kostya, talk zorder 2
+
                     p "Слушайте, а голос у вас такой, будто вы этот сценарий в подвале на коленке писали. «Вечер в хату» — это теперь новый корпоративный стандарт?"
+                    
+                    # Снова фокус на мошенника
+                    show screem at kostya, listen zorder 1
+                    show moshenik at talk zorder 2
                     m "Слышь, умник, ты код давай, а то карту заблочим так, что даже в метро по лицу не пустят."
+                    
+                    # Возвращаем фокус Косте для меню выбора
+                    show moshenik at listen zorder 1
+                    show screem at kostya, talk zorder 2
                     menu:
                         "Назвать код":
                             p "Ну, он звучит очень уверенно, почти как мой батя."
@@ -158,7 +196,7 @@ label branch_ignore:
 label educational_summary:
     play music "audio/Ghibli Station - The Mini Vandals.mp3"
     scene bg blackboard
-    show girl_kon at center
+    show girl_kon at talk, center, alaise
     g "Ну что, дорогуша, как прошли твои цифровые приключения? Надеюсь, ты еще при деньгах и с целыми нервами!"
     g "Позволь мне, твоей верной наставнице, разобрать этот хаос по полочкам. Мошенники — те еще драматические актеры, но мы-то с тобой зрители искушенные, верно?  Чтобы в следующий раз они ушли со сцены под свист, запомни эти золотые правила:"
     g "1. Тише едешь — деньги будут! Заметил, как они кричали: «СРОЧНО!»? Это их любимый трюк, чтобы ты отключил мозг и включил панику."
