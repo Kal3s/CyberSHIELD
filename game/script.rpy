@@ -3,6 +3,7 @@ image bg room_night = "images/main.png"
 image bg fake_site = "images/bank.png"  
 image bg blackboard = "images/bg_1.png" 
 image bg mail = "images/mail.png"
+image screem = "images/screem.png"
 
 # --- 2. Персонажи ---
 define p = Character("Костя")
@@ -10,6 +11,11 @@ define b = Character("Система", color="#21a038")
 define m = Character("Голос в трубке", color="#ff4444")
 define op = Character("Оператор банка", color="#21a038")
 define g = Character("Эйлаза", color="#1E90FF")
+
+# Определяем трансформацию в начале скрипта
+transform kostya:
+    zoom 0.5 # Уменьшить в 2 раза
+    xalign 1.1 yalign 1.0
 
 # --- 3. Начало игры ---
 label start:
@@ -25,6 +31,8 @@ label start:
     "Ваш аккаунт будет заблокирован через 24 часа."
     "В письме написано, что с карты пытаются списать 18 450 рублей."
     
+    scene bg room_night
+    show screem at kostya
     p "18 косарей? Да у меня на счету столько денег было только в день рождения, когда бабушка перевод прислала!  Что за суета на ровном месте? Я чувствую великое возмущение в Силе... или это просто тревога?"
 
     menu:

@@ -356,7 +356,7 @@ screen main_menu():
     ## заменять этот.
     tag menu
 
-    add "images/main.png"
+    add "images/main_menu.png"
 
     ## Эта пустая рамка затеняет главное меню.
     frame:
@@ -399,6 +399,7 @@ style main_menu_vbox:
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
+    color "#000000"
 
 style main_menu_title:
     properties gui.text_properties("title")
@@ -564,8 +565,6 @@ screen about():
             ## gui.about обычно установлено в options.rpy.
             if gui.about:
                 text "[gui.about!t]\n"
-
-            text _("Сделано с помощью {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
 style about_label is gui_label
