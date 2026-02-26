@@ -16,6 +16,7 @@ image volnenie2 = "images/volnenie 2.png"
 image zadumchivy = "images/zadumchivy.png"
 
 image moshenik = "images/moshenik.png"
+image zloy_moshennik = "images/moshenik zloy.png"
 
 image alaise = "images/girl_kon.png"
 
@@ -33,7 +34,11 @@ transform kostya:
 
 transform moshenik:
     zoom 0.85
-    xalign 0 yalign 1.5
+    xalign -0.2 yalign 1.5
+
+transform zloy_moshenik:
+    zoom 0.85
+    xalign -0.5 yalign 1.5
 
 transform alaise:
     zoom 1.1
@@ -141,13 +146,14 @@ label branch_click_link:
                     
                     # Снова фокус на мошенника
                     
+                    hide moshenik
                     show volnenie at kostya, listen zorder 1
-                    show moshenik at moshenik, talk zorder 2
+                    show zloy_moshennik at zloy_moshenik, talk zorder 2
                     m "Слышь, умник, ты код давай, а то карту заблочим так, что даже в метро по лицу не пустят."
                     
                     # Возвращаем фокус Косте для меню выбора
                     hide volnenie
-                    show moshenik at moshenik, listen zorder 1
+                    show zloy_moshennik at zloy_moshenik, listen zorder 1
                     show screem at kostya, talk zorder 2
                     menu:
                         "Назвать код":
