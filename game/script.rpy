@@ -1,14 +1,21 @@
 # --- 1. Определение ресурсов (заглушки) ---
-image bg room_night = "images/main.png" 
+# Фоны
+image bg first_screen = "images/main.png" 
 image bg fake_site = "images/bank.png"  
-image bg blackboard = "images/bg_1.png" 
+image bg final_screen = "images/bg_1.png" 
 image bg mail = "images/mail.png"
-image screem = "images/screem.png"
-image bg dialog = "images/bg dialog.png"
+image bg screen_for_dialogue = "images/bg dialog.png"
 image bg zvonok = "images/zvonok.png"
-image moshenik = "images/moshenik.png"
 image bg plachet = "images/bg plachet.jpg"
-image bg raztel = "images/bg razgovor po tel.jpg"
+image bg screen_kostya_govorit_po_telefonu = "images/bg razgovor po tel.jpg"
+
+# Персонажи
+image screem = "images/screem.png"
+image volnenie = "images/volnenie.png"
+image volnenie2 = "images/volnenie 2.png"
+image zadumchivy = "images/zadumchivy.png"
+image moshenik = "images/moshenik.png"
+image alaise = "images/girl_kon.png"
 
 # --- 2. Персонажи ---
 define p = Character("Костя")
@@ -19,10 +26,11 @@ define g = Character("Эйлаза", color="#1E90FF")
 
 # Определяем трансформацию в начале скрипта
 transform kostya:
-    zoom 0.5 # Уменьшить в 2 раза
-    xalign 1.1 yalign 1.0
+    zoom 0.8 # Уменьшить в 2 раза
+    xalign 1.3 yalign 1.0
 
 transform moshenik:
+    zoom 0.85
     xalign 0 yalign 1.5
 
 transform alaise:
@@ -38,10 +46,15 @@ transform listen:
     matrixcolor BrightnessMatrix(-0.2)
     ease 0.2 zoom 1
 
+# Проверки для условий
+define ignore = False
+define ignore_after_look_email = False
+define good_ending = False
+
 # --- 3. Начало игры ---
 label start:
-    play music "audio/In The Morning - The Grey Room _ Clark Sims.mp3" fadein 2.0
-    scene bg room_night
+    play music "audio/In The Morning - The Grey Room _ Clark Sims.mp3"
+    scene bg first_screen
 
     "Вечер. Костя проверяет почту."
     "Среди обычных писем — уведомление с логотипом Федбанк."
@@ -52,7 +65,7 @@ label start:
     "Ваш аккаунт будет заблокирован через 24 часа."
     "В письме написано, что с карты пытаются списать 18 450 рублей."
     
-    scene bg room_night
+    scene bg first_screen
     p "18 косарей? Да у меня на счету столько денег было только в день рождения, когда бабушка перевод прислала!  Что за суета на ровном месте? Я чувствую великое возмущение в Силе... или это просто тревога?"
 
     menu:
@@ -66,11 +79,12 @@ label start:
             jump branch_call_bank
             
         "Игнорировать письмо":
+            $ ignore = True
             jump branch_ignore
 
 # --- ВЕТКА 1: Работа с ссылкой ---
 label branch_click_link:
-    play music "audio/Dark Elves - Jimena Contreras.mp3" fadein 2.0
+    play music "audio/Twin Lynches - Density & Time.mp3" fadein 2.0
     scene bg fake_site
     p "Жми! Сначала жми, потом думай — девиз моего поколения. Опа, сайт один в один как родной. Но погодите...  fed-security-verify.com? Что это за «фед-огурец-помидор»?  Ладно, просят номер карты, CVV и код. Типичный вторник."
     "Сайт просит ввести номер карты, CVV и код из SMS."
@@ -94,6 +108,7 @@ label branch_click_link:
                         "Срочно заблокировать карту через приложение":
                             p "Фух, успел. Сердце колотится, как после литра энергетика. Больше никаких ссылок, только официальное приложение, только хардкор."
                             "Хорошая концовка номер 1 — Спасение в последний момент."
+                            $ good_ending = True
                             jump educational_summary
                         "Просто закрыть сайт":
                             p "Почему в приложении уведомление: «Списание 48 000 рублей. Покупка: Крипто-Биржа-Нарния»?  Пацаны, это не рофл, где мои деньги?!"
@@ -109,47 +124,54 @@ label branch_click_link:
             p "О, звонок. Номер 900? А, нет, это +7 (900) ОO0-00-01. Вместо нулей — буквы «О». Креативно, ничего не скажешь."
             menu:
                 "Ответить на звонок":
-                    scene bg dialog
+                    play music "audio/Radar - The Grey Room _ Density & Time.mp3"
+                    scene bg screen_for_dialogue
                     # Показываем обоих, мошенник начинает первым
                     show moshenik at moshenik, talk zorder 2
-                    show screem at kostya, listen zorder 1
+                    show zadumchivy at kostya, listen zorder 1
                     
                     m "Вечер в хату... то есть, здравствуйте! Служба безопасности, капитан Очевидность на связи. У вас там деньги улетают в Нарнию, срочно продиктуйте код из СМС!"
                     
                     # Переключаем фокус на Костю
-                    show moshenik at listen zorder 1
-                    show screem at kostya, talk zorder 2
+                    show moshenik at moshenik, listen zorder 1
+                    hide zadumchivy
+                    show volnenie at kostya, talk zorder 2
 
                     p "Слушайте, а голос у вас такой, будто вы этот сценарий в подвале на коленке писали. «Вечер в хату» — это теперь новый корпоративный стандарт?"
                     
                     # Снова фокус на мошенника
-                    show screem at kostya, listen zorder 1
-                    show moshenik at talk zorder 2
+                    
+                    show volnenie at kostya, listen zorder 1
+                    show moshenik at moshenik, talk zorder 2
                     m "Слышь, умник, ты код давай, а то карту заблочим так, что даже в метро по лицу не пустят."
                     
                     # Возвращаем фокус Косте для меню выбора
-                    show moshenik at listen zorder 1
+                    hide volnenie
+                    show moshenik at moshenik, listen zorder 1
                     show screem at kostya, talk zorder 2
                     menu:
                         "Назвать код":
-                            scene bg raztel
+                            scene bg screen_kostya_govorit_po_telefonu
                             p "Ну, он звучит очень уверенно, почти как мой батя."
                             scene bg plachet
                             "Деньги списаны."
                             "Плохая концовка номер 3 — Социальная инженерия."
                             jump educational_summary
                         "Сбросить звонок":
-                            scene bg raztel
+                            scene bg screen_kostya_govorit_po_telefonu
                             p "Попахивает разводом, причем очень дешевым."
                             "Карта в безопасности."
                             "Хорошая концовка номер 2 — Не попался на давление."
+                            $ good_ending = True
                             jump educational_summary
                 "Игнорировать":
+                    $ ignore_after_look_email = True
                     jump branch_ignore
         "Закрыть сайт":
-            scene bg room_night
+            scene bg first_screen
             p "Что-то мне подсказывает, что я творю дичь. Уходим!"
-            "Вы решили не рисковать и закрыли подозрительную страницу."
+            "Костя решил не рисковать и закрыли подозрительную страницу."
+            $ ignore_after_look_email = True
             jump branch_ignore
 
 # --- ВЕТКА 2: Проверка почты ---
@@ -161,18 +183,19 @@ label branch_check_address:
             p "Отправляем этих клоунов в бан, пусть там флексят."
             p "Нажимаем кнопку «Спам», выбираем «Фишинг». Лети, голубь, в цифровой ад. Я сегодня не просто студент, я — санитар интернета. Чувствую себя как Гигачад, который спас чью-то бабушку от потери пенсии."
             "Секретная хорошая концовка — Осознанный пользователь."
+            $ good_ending = True
             jump educational_summary
         "Всё равно перейти по ссылке":
             p "Ну, я же знаю, что это развод. Зайду чисто посмотреть на уровень графики. Главное — ничего не вводить, я же не мамонт..."
             jump branch_click_link
         "Удалить письмо":
-            p "С глаз долой — из кэша вон. У меня сессия на носу, мне некогда в эти игры играть. Удалить."
+            p "Ой, да идите вы в баню. Я только что открыл вкладку с прохождением Смуты, мне не до ваших драм."
             jump branch_ignore
 
 # --- ВЕТКА 3: Официальный канал ---
 label branch_call_bank:
-    scene bg room_night
-    "Вы находите номер на обратной стороне карты и звоните в банк."
+    scene bg first_screen
+    "Костя находит номер на обратной стороне карты и звоните в банк."
     op "Здравствуйте, Константин! Служба поддержки банка на связи. Чем могу помочь вашему бюджету?"
     p "Добрый вечер! Тут мне письмо пришло, мол, я внезапно решил задонатить 18 450 рублей какому-то таинственному незнакомцу.  Скажите честно: я во сне занимаюсь благотворительностью или это кто-то хочет мои пельмени на ужин отобрать?"
     op "*Смеётся* Константин, расслабьтесь. Мы проверили систему — никаких писем с требованием перейти по ссылке мы вам не отправляли.  Ваша карта в безопасности, а 18 тысяч всё ещё на месте."
@@ -180,13 +203,16 @@ label branch_call_bank:
     op "Рада помочь! Хорошего вечера!"
     "Отличная концовка — Проверил источник."
     "Достижение: Цифровая грамотность."
+    $ good_ending = True
     jump educational_summary
 
 # --- ВЕТКА 4: Игнорирование ---
 label branch_ignore:
-    play music "audio/In The Morning - The Grey Room _ Clark Sims.mp3" fadein 2.0
-    scene bg room_night
-    p "Ой, да идите вы в баню. Я только что открыл вкладку с прохождением Смуты, мне не до ваших драм. Удалять даже не буду."
+    scene bg first_screen
+    if ignore:
+        p "Ой, да идите вы в баню. Я только что открыл вкладку с прохождением Смуты, мне не до ваших драм."
+    if ignore_after_look_email:
+        play music "audio/In The Morning - The Grey Room _ Clark Sims.mp3" fadein 2.0
     "Через сутки приходит второе письмо: Ваш аккаунт заблокирован."
     p "Ого, ставки растут! Теперь я официально заблокирован. Это что, получается, я теперь цифровой изгой? А как же мой заказ на маркетплейсе? Как же подписка на музыку? Паника — мой компас земной, кажется, пора что-то делать!"
     menu:
@@ -197,14 +223,18 @@ label branch_ignore:
             p "Так, глубокий вдох. Открываем официальное приложение Федбанка. Палец на сканер... И-и-и... Барабанная дробь!"
             "В приложении всё в порядке."
             "Хорошая концовка номер 3 — Спокойствие спасает."
+            $ good_ending = True
             jump educational_summary
 
 # --- ОБРАЗОВАТЕЛЬНЫЙ БЛОК ---
 label educational_summary:
     play music "audio/Ghibli Station - The Mini Vandals.mp3"
-    scene bg blackboard
-    show girl_kon at talk, center, alaise
-    g "Ну что, дорогуша, как прошли твои цифровые приключения? Надеюсь, ты еще при деньгах и с целыми нервами!"
+    scene bg final_screen
+    show alaise at talk, center, alaise
+    if good_ending:
+        g "Ну что, дорогуша, как прошли твои цифровые приключения? Надеюсь, ты еще при деньгах и с целыми нервами!"
+    else:
+        g "Ну что, дорогуша, как прошли твои цифровые приключения? Тебе стоило бы действовать осторожнее!"
     g "Позволь мне, твоей верной наставнице, разобрать этот хаос по полочкам. Мошенники — те еще драматические актеры, но мы-то с тобой зрители искушенные, верно?  Чтобы в следующий раз они ушли со сцены под свист, запомни эти золотые правила:"
     g "1. Тише едешь — деньги будут! Заметил, как они кричали: «СРОЧНО!»? Это их любимый трюк, чтобы ты отключил мозг и включил панику."
     g "2. Смотри в «паспорт» письма. Если адрес отправителя похож на винегрет из букв вроде .xyz или fed-security-verify.com — это фальшивка. Настоящий банк не прячется за странными доменами."
