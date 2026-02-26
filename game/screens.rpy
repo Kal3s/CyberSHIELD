@@ -356,7 +356,7 @@ screen main_menu():
     ## заменять этот.
     tag menu
 
-    add "images/Gemini_Generated_Image_opx45mopx45mopx4.png"
+    add "images/main.png"
 
     ## Эта пустая рамка затеняет главное меню.
     frame:

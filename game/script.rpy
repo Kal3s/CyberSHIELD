@@ -1,27 +1,17 @@
 # --- 1. Определение ресурсов (заглушки) ---
-image bg room_night = "images/Gemini_Generated_Image_opx45mopx45mopx4.png" 
+image bg room_night = "images/main.png" 
 image bg fake_site = "images/bank.png"  
 image bg blackboard = "images/bg_1.png" 
+image bg mail = "images/mail.png"
 
-# --- 2. Экраны (Интерфейс письма) ---
-screen email_notification():
-    frame:
-        xalign 0.5 yalign 0.4
-        padding (20, 20)
-        vbox:
-            spacing 10
-            text "📧 Новое письмо: Федбанк" color "#21a038" size 30
-            text "Тема: Срочно! Подозрительная операция" color "#000"
-            text "Сумма списания: 18 450 руб." color "#ff4444"
-
-# --- 3. Персонажи ---
+# --- 2. Персонажи ---
 define p = Character("Костя")
 define b = Character("Система", color="#21a038")
 define m = Character("Голос в трубке", color="#ff4444")
 define op = Character("Оператор банка", color="#21a038")
 define g = Character("Эйлаза", color="#1E90FF")
 
-# --- 4. Начало игры ---
+# --- 3. Начало игры ---
 label start:
     play music "audio/In The Morning - The Grey Room _ Clark Sims.mp3" fadein 2.0
     scene bg room_night
@@ -30,12 +20,11 @@ label start:
     "Среди обычных писем — уведомление с логотипом Федбанк."
     p "Так, курсач сам себя не напишет, а мемы в пабликах сами себя не полайкают. О, письмо пришло. От Федбанка?  Интересно, неужели мои 15 рублей кэшбэка превратились в тыкву?"
 
-    show screen email_notification
+    scene bg mail
     "Тема письма: Подозрительная операция."
     "Ваш аккаунт будет заблокирован через 24 часа."
     "В письме написано, что с карты пытаются списать 18 450 рублей."
     
-    hide screen email_notification
     p "18 косарей? Да у меня на счету столько денег было только в день рождения, когда бабушка перевод прислала!  Что за суета на ровном месте? Я чувствую великое возмущение в Силе... или это просто тревога?"
 
     menu:
@@ -129,6 +118,7 @@ label branch_check_address:
 
 # --- ВЕТКА 3: Официальный канал ---
 label branch_call_bank:
+    scene bg room_night
     "Вы находите номер на обратной стороне карты и звоните в банк."
     op "Здравствуйте, Константин! Служба поддержки банка на связи. Чем могу помочь вашему бюджету?"
     p "Добрый вечер! Тут мне письмо пришло, мол, я внезапно решил задонатить 18 450 рублей какому-то таинственному незнакомцу.  Скажите честно: я во сне занимаюсь благотворительностью или это кто-то хочет мои пельмени на ужин отобрать?"
