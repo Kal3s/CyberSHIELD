@@ -399,7 +399,7 @@ style main_menu_vbox:
 
 style main_menu_text:
     properties gui.text_properties("main_menu", accent=True)
-    color "#000000"
+    color "#ffffff"
 
 style main_menu_title:
     properties gui.text_properties("title")
