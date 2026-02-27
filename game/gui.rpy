@@ -101,18 +101,19 @@ define gui.game_menu_background = "images/main_menu.png"
 ## Эти переменные контролируют, как диалог появляется на отдельной строчке.
 
 ## Высота текстового окна, содержащего диалог.
-define gui.textbox_height = 270
+define gui.textbox_height = 1000
 
 ## Местоположение текстового окна по вертикали экрана. 0.0 — верх, 0.5 — центр и
 ## 1.0 — низ.
 define gui.textbox_yalign = 1.0
+define gui.textbox_xalign = 0.5
 
 
 ## Местоположение имени говорящего персонажа по отношению к текстовому окну.
 ## Это могут быть целые значения в пикселях слева и сверху от начала окна или
 ## процентное отношение, например, 0.5 для центрирования.
-define gui.name_xpos = 0.25
-define gui.name_ypos = 0.12
+define gui.name_xpos = 0.1
+define gui.name_ypos = 0.1
 
 ## Горизонтальное выравнивание имени персонажа. Это может быть 0.0 для
 ## левоориентированного, 0.5 для центрированного и 1.0 для правоориентированного
@@ -136,11 +137,11 @@ define gui.namebox_tile = False
 ## Размещение диалога по отношению к текстовому окну. Это могут быть целые
 ## значения в пикселях слева и сверху от текстового окна или процентное
 ## отношение, например, 0.5 для центрирования.
-define gui.dialogue_xpos = 0.25
+define gui.dialogue_xpos = 0.275
 define gui.dialogue_ypos = 0.3
 
 ## Максимальная ширина текста диалога в пикселях.
-define gui.dialogue_width = 1000
+define gui.dialogue_width = 900
 
 ## Горизонтальное выравнивание текста диалога. Это может быть 0.0 для
 ## левоориентированного, 0.5 для центрированного и 1.0 для правоориентированного
@@ -441,24 +442,25 @@ init python:
     def small():
 
         ## Размеры шрифтов.
-        gui.text_size = 45
-        gui.name_text_size = 54
+        gui.text_size = 35
+        gui.name_text_size = 50
         gui.notify_text_size = 38
         gui.interface_text_size = 45
         gui.button_text_size = 45
         gui.label_text_size = 51
 
         ## Регулирует местоположение текстового окна.
-        gui.textbox_height = 360
-        gui.name_xpos = 120
-        gui.dialogue_xpos = 135
-        gui.dialogue_width = 1650
+        gui.textbox_height = 300
+        gui.name_xpos = 525
+        gui.dialogue_xalign = 1
+        gui.dialogue_width = 900
+        gui.dialogue_ypos = 90
 
         ## Изменяет размеры и интервалы различных объектов.
         gui.slider_size = 54
 
-        gui.choice_button_width = 1860
-        gui.choice_button_text_size = 45
+        gui.choice_button_width = 1000
+        gui.choice_button_text_size = 38
 
         gui.navigation_spacing = 30
         gui.pref_button_spacing = 15

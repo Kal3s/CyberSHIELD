@@ -20,6 +20,9 @@ image zloy_moshennik = "images/moshenik zloy.png"
 
 image alaise = "images/girl_kon.png"
 
+image sotrudnik = "images/sotrudnik.png"
+image sotrudnik_laugh = "images/sotrudnik_laugh.png"
+
 # --- 2. Персонажи ---
 define p = Character("Костя", color="FFFF00")
 define b = Character("Система", color="#21a038")
@@ -42,6 +45,10 @@ transform zloy_moshenik:
 
 transform alaise:
     zoom 1.1
+
+transform sotrudnik_t:
+    zoom 1.2
+    xpos -100 ypos 175
 
 # Трансформация для говорящего (стандартная яркость)
 transform talk:
@@ -202,10 +209,33 @@ label branch_check_address:
 label branch_call_bank:
     scene bg first_screen
     "Костя находит номер на обратной стороне карты и звоните в банк."
+
+    scene bg dialog
+    show sotrudnik at sotrudnik_t, talk zorder 2
+    show zadumchivy at kostya, listen zorder 1
+
     op "Здравствуйте, Константин! Служба поддержки банка на связи. Чем могу, Вам, помочь?"
+
+    show sotrudnik at sotrudnik_t, listen zorder 1
+    show zadumchivy at kostya, talk zorder 2
+
     p "Добрый вечер! Тут мне письмо пришло, мол, я внезапно решил задонатить 18 450 рублей какому-то таинственному незнакомцу.  Скажите честно: я во сне занимаюсь благотворительностью или это кто-то хочет мои пельмени на ужин отобрать?"
+    
+    hide sotrudnik
+    show sotrudnik_laugh at sotrudnik_t, talk zorder 2
+    show zadumchivy at kostya, listen zorder 1
+
     op "*Смеётся* Константин, расслабьтесь. Мы проверили систему — никаких писем с требованием перейти по ссылке мы вам не отправляли.  Ваша карта в безопасности, а 18 тысяч всё ещё на месте."
+
+    show sotrudnik_laugh at sotrudnik_t, listen zorder 1
+    show zadumchivy at kostya, talk zorder 2
+
     p "Фух! А я уже думал, что мой аккаунт реально превратится в тыкву через 24 часа.  Вы — мой личный герой дня. Ставлю вам 10 баллов из 10 и виртуальное «спасибо»!"
+
+    hide sotrudnik_laugh
+    show sotrudnik at sotrudnik_t, talk zorder 2
+    show zadumchivy at kostya, listen zorder 1
+
     op "Рад, Вам, помочь! Хорошего вечера!"
     "Отличная концовка — Проверил источник."
     $ good_ending = True

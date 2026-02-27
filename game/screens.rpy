@@ -130,7 +130,7 @@ style namebox_label is say_label
 
 
 style window:
-    xalign 0.5
+    xalign gui.textbox_xalign
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
@@ -559,7 +559,7 @@ screen about():
         
 
         vbox:
-            xpos 75
+            xpos 0
             label "[config.name!t]\n"
             text _("Версия [config.version!t]\n")
 
@@ -628,7 +628,7 @@ screen file_slots(title):
                 style_prefix "slot"
 
                 xalign 0.5
-                yalign 0.5
+                yalign 0.4
 
                 spacing gui.slot_spacing
 
@@ -1541,7 +1541,7 @@ screen quick_menu():
 
 style window:
     variant "small"
-    background "gui/phone/textbox.png"
+    background Image("gui/phone/textbox.png", xalign=0.5, yalign=0.1)
 
 style radio_button:
     variant "small"
