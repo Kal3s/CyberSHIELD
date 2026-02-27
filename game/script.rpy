@@ -21,11 +21,11 @@ image zloy_moshennik = "images/moshenik zloy.png"
 image alaise = "images/girl_kon.png"
 
 # --- 2. Персонажи ---
-define p = Character("Костя")
+define p = Character("Костя", color="FFFF00")
 define b = Character("Система", color="#21a038")
 define m = Character("Голос в трубке", color="#ff4444")
 define op = Character("Оператор банка", color="#21a038")
-define g = Character("Эйлаза", color="#1E90FF")
+define g = Character("Эйлаза", color="#EE82EE")
 
 # Определяем трансформацию в начале скрипта
 transform kostya:

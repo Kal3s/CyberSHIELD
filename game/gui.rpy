@@ -76,6 +76,9 @@ define gui.name_text_size = 45
 ## Размер текста в пользовательском интерфейсе.
 define gui.interface_text_size = 33
 
+## Размер текста в кнопках
+define gui.button_text_size = 20
+
 ## Размер заголовков в пользовательском интерфейсе.
 define gui.label_text_size = 36
 
@@ -98,7 +101,7 @@ define gui.game_menu_background = "images/main_menu.png"
 ## Эти переменные контролируют, как диалог появляется на отдельной строчке.
 
 ## Высота текстового окна, содержащего диалог.
-define gui.textbox_height = 278
+define gui.textbox_height = 270
 
 ## Местоположение текстового окна по вертикали экрана. 0.0 — верх, 0.5 — центр и
 ## 1.0 — низ.
@@ -108,8 +111,8 @@ define gui.textbox_yalign = 1.0
 ## Местоположение имени говорящего персонажа по отношению к текстовому окну.
 ## Это могут быть целые значения в пикселях слева и сверху от начала окна или
 ## процентное отношение, например, 0.5 для центрирования.
-define gui.name_xpos = 360
-define gui.name_ypos = 0
+define gui.name_xpos = 0.25
+define gui.name_ypos = 0.12
 
 ## Горизонтальное выравнивание имени персонажа. Это может быть 0.0 для
 ## левоориентированного, 0.5 для центрированного и 1.0 для правоориентированного
@@ -133,11 +136,11 @@ define gui.namebox_tile = False
 ## Размещение диалога по отношению к текстовому окну. Это могут быть целые
 ## значения в пикселях слева и сверху от текстового окна или процентное
 ## отношение, например, 0.5 для центрирования.
-define gui.dialogue_xpos = 402
-define gui.dialogue_ypos = 75
+define gui.dialogue_xpos = 0.25
+define gui.dialogue_ypos = 0.3
 
 ## Максимальная ширина текста диалога в пикселях.
-define gui.dialogue_width = 1116
+define gui.dialogue_width = 1000
 
 ## Горизонтальное выравнивание текста диалога. Это может быть 0.0 для
 ## левоориентированного, 0.5 для центрированного и 1.0 для правоориентированного
@@ -210,11 +213,11 @@ define gui.quick_button_text_selected_color = gui.accent_color
 ## Кнопки выбора используются во внутриигровых меню.
 
 define gui.choice_button_width = 1185
-define gui.choice_button_height = None
+define gui.choice_button_height = 75
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(150, 8, 150, 8)
+define gui.choice_button_borders = Borders(150, 30, 150, 8)
 define gui.choice_button_text_font = gui.text_font
-define gui.choice_button_text_size = gui.text_size
+define gui.choice_button_text_size = gui.button_text_size
 define gui.choice_button_text_xalign = 0.5
 define gui.choice_button_text_idle_color = '#888888'
 define gui.choice_button_text_hover_color = "#ffffff"

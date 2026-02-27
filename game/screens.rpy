@@ -556,10 +556,11 @@ screen about():
     use game_menu(_("Об игре"), scroll="viewport"):
 
         style_prefix "about"
+        
 
         vbox:
-
-            label "[config.name!t]"
+            xpos 75
+            label "[config.name!t]\n"
             text _("Версия [config.version!t]\n")
 
             ## gui.about обычно установлено в options.rpy.
@@ -735,9 +736,10 @@ screen preferences():
     use game_menu(_("Настройки"), scroll="viewport"):
 
         vbox:
-
+            
             hbox:
                 box_wrap True
+                xalign 0.1
 
                 if renpy.variant("pc") or renpy.variant("web"):
 
@@ -762,6 +764,7 @@ screen preferences():
             hbox:
                 style_prefix "slider"
                 box_wrap True
+                xpos 75
 
                 vbox:
 
@@ -991,7 +994,7 @@ screen help():
             spacing 23
 
             hbox:
-
+                xalign 0.1
                 textbutton _("Клавиатура") action SetScreenVariable("device", "keyboard")
                 textbutton _("Мышь") action SetScreenVariable("device", "mouse")
 
@@ -1007,7 +1010,7 @@ screen help():
 
 
 screen keyboard_help():
-
+    
     hbox:
         label _("Enter")
         text _("Прохождение диалогов, активация интерфейса.")
@@ -1106,7 +1109,9 @@ screen gamepad_help():
         label _("Y/Верхняя кнопка")
         text _("Скрывает интерфейс пользователя.")
 
-    textbutton _("Калибровка") action GamepadCalibrate()
+    hbox:
+        xalign 0.1
+        textbutton _("Калибровка") action GamepadCalibrate()
 
 
 style help_button is gui_button
