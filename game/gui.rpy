@@ -242,8 +242,8 @@ define gui.slot_button_text_selected_idle_color = gui.selected_color
 define gui.slot_button_text_selected_hover_color = gui.hover_color
 
 ## Ширина и высота миниатюры, используемой слотом сохранения.
-define config.thumbnail_width = 384
-define config.thumbnail_height = 216
+define config.thumbnail_width = 320
+define config.thumbnail_height = 180
 
 ## Количество колонок и рядов в таблице слотов.
 define gui.file_slot_cols = 3

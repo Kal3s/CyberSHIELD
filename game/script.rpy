@@ -2,7 +2,7 @@
 # Фоны
 image bg first_screen = "images/main.png" 
 image bg fake_site = "images/bank.png"  
-image bg final_screen = "images/bg_1.png" 
+image bg final_screen = "images/bg alise.png" 
 image bg mail = "images/mail.png"
 image bg screen_for_dialogue = "images/bg dialog.png"
 image bg zvonok = "images/zvonok.png"
@@ -18,17 +18,17 @@ image zadumchivy = "images/zadumchivy.png"
 image moshenik = "images/moshenik.png"
 image zloy_moshennik = "images/moshenik zloy.png"
 
-image alaise = "images/girl_kon.png"
+image alaise = "images/alaise.png"
 
 image sotrudnik = "images/sotrudnik.png"
 image sotrudnik_laugh = "images/sotrudnik_laugh.png"
 
 # --- 2. Персонажи ---
-define p = Character("Костя", color="FFFF00")
+define p = Character("Костя", color="ffff00")
 define b = Character("Система", color="#21a038")
 define m = Character("Голос в трубке", color="#ff4444")
 define op = Character("Оператор банка", color="#21a038")
-define g = Character("Эйлаза", color="#EE82EE")
+define g = Character("Элайза", color="#EE82EE")
 
 # Определяем трансформацию в начале скрипта
 transform kostya:
@@ -44,7 +44,7 @@ transform zloy_moshenik:
     xalign -0.5 yalign 1.5
 
 transform alaise:
-    zoom 1.1
+    zoom 0.25
 
 transform sotrudnik_t:
     zoom 1.2
@@ -117,7 +117,7 @@ label branch_click_link:
                 "Прочитать внимательно текст SMS":
                     p "«Сотрудники банка не запрашивают код... Отмена перевода на 48 000 руб».  Погодите-ка! У меня на карте было всего пять тысяч и стипендия! Откуда сорок восемь?! Это же дофига! Ах вы ж..."
                     menu:
-                        "Срочно заблокировать карту через приложение":
+                        "Заблокировать карту":
                             p "Фух, успел. Сердце колотится, как после литра энергетика. Больше никаких ссылок, только официальное приложение, только хардкор."
                             "Хорошая концовка номер 1 — Спасение в последний момент."
                             $ good_ending = True
@@ -189,7 +189,7 @@ label branch_click_link:
 # --- ВЕТКА 2: Проверка почты ---
 label branch_check_address:
     scene bg mail
-    p "Так-так-так, что тут у нас? «Срочно», «блокировка», «18 косарей»... Слишком много драмы для обычного вторника. Как говорил классик: «Вы находитесь здесь». А вот где находится отправитель этого письма — большой вопрос. Пора проверить «паспорт» этого спама."
+    p "Так-так-так, что тут у нас? «Срочно», «блокировка», «18 косарей»... Слишком много драмы для обычного вторника. Пора проверить «паспорт» этого спама."
     p "Смотрим на адрес... security@fedbank-support.xyz. Серьёзно? .xyz? Они бы ещё написали .narnia или .vzlom-zhopy. Настоящий Федбанк скорее признает, что у них банкоматы иногда разговаривают, чем отправит письмо с такого домена."
     menu:
         "Пожаловаться на письмо как на фишинг":

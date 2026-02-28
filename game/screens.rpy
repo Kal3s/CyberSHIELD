@@ -616,7 +616,7 @@ screen file_slots(title):
                 style "page_label"
 
                 key_events True
-                xalign 0.5
+                xalign 0.4
                 action page_name_value.Toggle()
 
                 input:
@@ -627,7 +627,7 @@ screen file_slots(title):
             grid gui.file_slot_cols gui.file_slot_rows:
                 style_prefix "slot"
 
-                xalign 0.5
+                xalign 0.4
                 yalign 0.4
 
                 spacing gui.slot_spacing
@@ -641,9 +641,9 @@ screen file_slots(title):
 
                         has vbox
 
-                        add FileScreenshot(slot) xalign 0.5
+                        add FileScreenshot(slot) xpos 33 ypos 40
 
-                        text FileTime(slot, format=_("{#file_time}%A, %d %B %Y, %H:%M"), empty=_("Пустой слот")):
+                        text FileTime(slot, format=_("{#file_time}%A, %d %B %Y, %H:%M"), empty=_("Пустой слот")) xpos 190 ypos 60:
                             style "slot_time_text"
 
                         text FileSaveName(slot):
@@ -655,7 +655,7 @@ screen file_slots(title):
             vbox:
                 style_prefix "page"
 
-                xalign 0.5
+                xalign 0.4
                 yalign 1.0
 
                 hbox:
@@ -678,16 +678,6 @@ screen file_slots(title):
 
                     textbutton _(">") action FilePageNext()
                     key "save_page_next" action FilePageNext()
-
-                if config.has_sync:
-                    if CurrentScreenName() == "save":
-                        textbutton _("Загрузить Sync"):
-                            action UploadSync()
-                            xalign 0.5
-                    else:
-                        textbutton _("Скачать Sync"):
-                            action DownloadSync()
-                            xalign 0.5
 
 
 style page_label is gui_label

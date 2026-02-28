@@ -153,7 +153,6 @@ define config.save_directory = "CyberSHIELD-1771839112"
 
 define config.window_icon = "gui/window_icon.png"
 
-
 ## Настройка Дистрибутива ######################################################
 ##
 ## Эта секция контролирует, как Ren'Py строит дистрибутивные файлы из вашего
