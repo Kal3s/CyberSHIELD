@@ -141,7 +141,7 @@ label branch_click_link:
                     # Показываем обоих, мошенник начинает первым
                     show moshenik at moshenik, talk zorder 2
                     show zadumchivy at kostya, listen zorder 1
-                    
+                    # voice "audio/moshennik1.mp3"
                     m "Вечер в хату... то есть, здравствуйте! Служба безопасности, капитан Очевидность на связи. У вас там деньги улетают в Нарнию, срочно продиктуйте код из СМС!"
                     
                     # Переключаем фокус на Костю
