@@ -18,7 +18,9 @@ image zadumchivy = "images/zadumchivy.png"
 image moshenik = "images/moshenik.png"
 image zloy_moshennik = "images/moshenik zloy.png"
 
-image alaise = "images/alaise.png"
+image alaise = "images/alaise_poz1.png"
+image alaise2 = "images/alaise_poz2.png"
+image alaise3 = "images/alaise_poz3.png"
 
 image sotrudnik = "images/sotrudnik.png"
 image sotrudnik_laugh = "images/sotrudnik_laugh.png"
@@ -44,7 +46,10 @@ transform zloy_moshenik:
     xalign -0.5 yalign 1.5
 
 transform alaise:
-    zoom 0.25
+    zoom 0.4
+
+transform alaise1:
+    zoom 0.35
 
 transform sotrudnik_t:
     zoom 1.2
@@ -270,10 +275,22 @@ label educational_summary:
         g "Ну что, дорогуша, как прошли твои цифровые приключения? Надеюсь, ты еще при деньгах и с целыми нервами!"
     else:
         g "Ну что, дорогуша, как прошли твои цифровые приключения? Тебе стоило бы действовать осторожнее!"
+    hide alaise
+    show alaise2 at talk, center, alaise1
     g "Позволь мне, твоей верной наставнице, разобрать этот хаос по полочкам. Мошенники — те еще драматические актеры, но мы-то с тобой зрители искушенные, верно?  Чтобы в следующий раз они ушли со сцены под свист, запомни эти золотые правила:"
+    hide alaise2
+    show alaise3 at talk, center, alaise1
     g "1. Тише едешь — деньги будут! Заметил, как они кричали: «СРОЧНО!»? Это их любимый трюк, чтобы ты отключил мозг и включил панику."
+    hide alaise3
+    show alaise at talk, center, alaise
     g "2. Смотри в «паспорт» письма. Если адрес отправителя похож на винегрет из букв вроде .xyz или fed-security-verify.com — это фальшивка. Настоящий банк не прячется за странными доменами."
+    hide alaise
+    show alaise2 at talk, center, alaise1
     g "3. Твои секреты — только твои. Запомни как мантру: сотрудники банка никогда, слышишь, никогда не спросят твой CVV или код из SMS. Если просят — смело жми «отбой»."
+    hide alaise2
+    show alaise3 at talk, center, alaise1
     g "4. Официальный путь — самый короткий. Сомневаешься? Не тыкай в подозрительные кнопки. Просто зайди в официальное приложение или набери номер с оборота своей карты. Это всегда работает безотказно!"
+    hide alaise3
+    show alaise at talk, center, alaise
     g "Ну что, теперь ты чувствуешь себя чуть-чуть кибер-гением?  Не расслабляйся, впереди еще много интересного!"
     return
