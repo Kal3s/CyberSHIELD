@@ -77,6 +77,7 @@ label start:
 
     "Вечер. Костя проверяет почту."
     "Среди обычных писем — уведомление с логотипом Федбанка."
+    voice "audio/voice_kostya/kostya1.mp3"
     p "Так, курсач сам себя не напишет, а шортсы сами себя не полайкают. О, письмо пришло. От Федбанка? Интересно, неужели мне пришли 15 рублей кэшбэка от покупки холодильника в Эльдавидео?"
 
     scene bg mail
@@ -85,6 +86,7 @@ label start:
     "В письме написано, что с карты пытаются списать 18 450 рублей."
     
     scene bg first_screen
+    voice "audio/voice_kostya/kostya2.mp3"
     p "18 косарей? Да у меня на счету столько денег было только в день рождения, когда бабушка подарила на конфетки! Что за суета на ровном месте?"
 
     menu:
@@ -105,39 +107,50 @@ label start:
 label branch_click_link:
     play music "audio/Twin Lynches - Density & Time.mp3" fadein 2.0
     scene bg fake_site
+    voice "audio/voice_kostya/kostya3.mp3"
     p "Сначала жми, потом думай — девиз моего поколения. Опа, сайт один в один как родной. Просят номер карты, CVV и код. Типичный вторник."
 
     menu:
         "Ввести все данные":
+            voice "audio/voice_kostya/kostya4.mp3"
             p "Номер, срок, три цифры с оборота... Готово! О, СМСка прилетела. Ха! Ну, системе-то на сайте можно доверять, это же автоматика, а не человек."
             menu:
                 "Ввести код":
+                    voice "audio/voice_kostya/kostya5.mp3"
                     p "Финальный аккорд! Спасаем мои честно заработанные копейки!"
+                    voice "audio/voice_kostya/kostya6.mp3"
                     p "Жму «Подтвердить»... Почему в приложении уведомление: «Списание 48 000 рублей. Покупка: Крипто-Биржа-Нарния»?  Пацаны, это не рофл, где мои деньги?!"
                     scene bg plachet
+                    voice "audio/voice_kostya/kostya7.mp3"
                     p "Кажется, я только что оплатил кому-то отпуск в Геленджике."
                     "Плохая концовка номер 1 — Полный доступ передан мошенникам."
                     jump educational_summary
                 
                 "Прочитать внимательно текст SMS":
+                    voice "audio/voice_kostya/kostya8.mp3"
                     p "«Сотрудники банка не запрашивают код... Отмена перевода на 48 000 руб».  Погодите-ка! У меня на карте было всего пять тысяч и стипендия! Откуда сорок восемь?! Это же дофига! Ах вы ж..."
                     menu:
                         "Заблокировать карту":
+                            voice "audio/voice_kostya/kostya9.mp3"
                             p "Фух, успел. Сердце колотится, как после литра энергетика. Больше никаких ссылок, только официальное приложение, только хардкор."
                             "Хорошая концовка номер 1 — Спасение в последний момент."
                             $ good_ending = True
                             jump educational_summary
                         "Просто закрыть сайт":
+                            voice "audio/voice_kostya/kostya10.mp3"
                             p "Почему в приложении уведомление: «Списание 48 000 рублей. Покупка: Крипто-Биржа-Нарния»?  Пацаны, это не рофл, где мои деньги?!"
                             scene bg plachet
-                            p "Кажется, я только что оплатил кому-то отпуск в Геленджике. Земля мне пухом как пользователю интернета."
+                            voice "audio/voice_kostya/kostya7.mp3"
+                            p "Кажется, я только что оплатил кому-то отпуск в Геленджике."
                             "Плохая концовка номер 2 — Слишком поздно."
                             jump educational_summary
 
         "Ввести только номер карты":
+            voice "audio/voice_kostya/kostya11.mp3"
             p "Я им только номер дам, это же безопасно, да?"
             scene bg zvonok
             "Начинают поступать подозрительные звонки."
+            voice "audio/voice_kostya/kostya12.mp3"
             p "О, звонок. Номер 900? А, нет, это +7 (900) ОO0-00-01. Вместо нулей — буквы «О». Креативно, ничего не скажешь."
             menu:
                 "Ответить на звонок":
@@ -146,7 +159,8 @@ label branch_click_link:
                     # Показываем обоих, мошенник начинает первым
                     show moshenik at moshenik, talk zorder 2
                     show zadumchivy at kostya, listen zorder 1
-                    # voice "audio/moshennik1.mp3"
+                    
+                    voice "audio/voice_vanya/vanya1.mp3"
                     m "Вечер в хату... то есть, здравствуйте! Служба безопасности, капитан Очевидность на связи. У вас там деньги улетают в Нарнию, срочно продиктуйте код из СМС!"
                     
                     # Переключаем фокус на Костю
@@ -154,6 +168,7 @@ label branch_click_link:
                     hide zadumchivy
                     show volnenie at kostya, talk zorder 2
 
+                    voice "audio/voice_kostya/kostya13.mp3"
                     p "Слушайте, а голос у вас такой, будто вы Волк из «Крсной шапочки» после обеда бабушкой. «Вечер в хату» — это теперь новый корпоративный стандарт?"
                     
                     # Снова фокус на мошенника
@@ -161,6 +176,8 @@ label branch_click_link:
                     hide moshenik
                     show volnenie at kostya, listen zorder 1
                     show zloy_moshennik at zloy_moshenik, talk zorder 2
+
+                    voice "audio/voice_vanya/vanya2.mp3"
                     m "Слышь, умник, ты код давай, а то карту заблочим так, что даже в метро по лицу не пустят."
                     
                     # Возвращаем фокус Косте для меню выбора
@@ -170,6 +187,7 @@ label branch_click_link:
                     menu:
                         "Назвать код":
                             scene bg screen_kostya_govorit_po_telefonu
+                            voice "audio/voice_kostya/kostya14.mp3"
                             p "Ну, он звучит очень уверенно, почти как мой батя."
                             scene bg plachet
                             "Деньги списаны."
@@ -177,6 +195,7 @@ label branch_click_link:
                             jump educational_summary
                         "Сбросить звонок":
                             scene bg screen_kostya_govorit_po_telefonu
+                            voice "audio/voice_kostya/kostya15.mp3"
                             p "Попахивает разводом, причем очень дешевым."
                             "Карта в безопасности."
                             "Хорошая концовка номер 2 — Не попался на давление."
@@ -187,6 +206,7 @@ label branch_click_link:
                     jump branch_ignore
         "Закрыть сайт":
             scene bg first_screen
+            voice "audio/voice_kostya/kostya16.mp3"
             p "Что-то мне подсказывает, что я творю дичь. Уходим!"
             $ ignore_after_look_email = True
             jump branch_ignore
@@ -194,19 +214,25 @@ label branch_click_link:
 # --- ВЕТКА 2: Проверка почты ---
 label branch_check_address:
     scene bg mail
+    voice "audio/voice_kostya/kostya17.mp3"
     p "Так-так-так, что тут у нас? «Срочно», «блокировка», «18 косарей»... Слишком много драмы для обычного вторника. Пора проверить «паспорт» этого спама."
-    p "Смотрим на адрес... security@fedbank-support.xyz. Серьёзно? .xyz? Они бы ещё написали .narnia или .vzlom-zhopy. Настоящий Федбанк скорее признает, что у них банкоматы иногда разговаривают, чем отправит письмо с такого домена."
+    voice "audio/voice_kostya/kostya18.mp3"
+    p "Смотрим на адрес... security@fedbank-support.xyz. Серьёзно? .xyz? Они бы ещё написали .narnia или ne-vzlom.com. Настоящий Федбанк скорее признает, что у них банкоматы иногда разговаривают, чем отправит письмо с такого домена."
     menu:
         "Пожаловаться на письмо как на фишинг":
+            voice "audio/voice_kostya/kostya19.mp3"
             p "Отправляем этих клоунов в бан, пусть там флексят."
+            voice "audio/voice_kostya/kostya20.mp3"
             p "Нажимаем кнопку «Спам», выбираем «Фишинг». Лети, голубь, в цифровой ад. Я сегодня не просто студент, я — санитар интернета. Чувствую себя как Гигачад, который спас чью-то бабушку от потери пенсии."
             "Секретная хорошая концовка — Осознанный пользователь."
             $ good_ending = True
             jump educational_summary
         "Всё равно перейти по ссылке":
+            voice "audio/voice_kostya/kostya21.mp3"
             p "Ну, я же знаю, что это развод. Зайду чисто посмотреть на уровень графики. Главное — ничего не вводить, я же не мамонт..."
             jump branch_click_link
         "Удалить письмо":
+            voice "audio/voice_kostya/kostya22.mp3"
             p "Ой, да идите вы в баню. Я только что открыл вкладку с прохождением Смуты, мне не до ваших драм."
             jump branch_ignore
 
@@ -224,6 +250,7 @@ label branch_call_bank:
     show sotrudnik at sotrudnik_t, listen zorder 1
     show zadumchivy at kostya, talk zorder 2
 
+    voice "audio/voice_kostya/kostya23.mp3"
     p "Добрый вечер! Тут мне письмо пришло, мол, я внезапно решил задонатить 18 450 рублей какому-то таинственному незнакомцу.  Скажите честно: я во сне занимаюсь благотворительностью или это кто-то хочет мои пельмени на ужин отобрать?"
     
     hide sotrudnik
@@ -235,6 +262,7 @@ label branch_call_bank:
     show sotrudnik_laugh at sotrudnik_t, listen zorder 1
     show zadumchivy at kostya, talk zorder 2
 
+    voice "audio/voice_kostya/kostya24.mp3"
     p "Фух! А я уже думал, что мой аккаунт реально превратится в тыкву через 24 часа.  Вы — мой личный герой дня. Ставлю вам 10 баллов из 10 и виртуальное «спасибо»!"
 
     hide sotrudnik_laugh
@@ -250,18 +278,21 @@ label branch_call_bank:
 label branch_ignore:
     scene bg first_screen
     if ignore:
+        voice "audio/voice_kostya/kostya22.mp3"
         p "Ой, да идите вы в баню. Я только что открыл вкладку с прохождением Смуты, мне не до ваших драм."
     if ignore_after_look_email:
         play music "audio/In The Morning - The Grey Room _ Clark Sims.mp3" fadein 2.0
     "Через сутки приходит второе письмо: Ваш аккаунт заблокирован."
+    voice "audio/voice_kostya/kostya25.mp3"
     p "Ого, ставки растут! Теперь я официально заблокирован. Это что, получается, я теперь цифровой изгой? А как же мой заказ на маркетплейсе? Как же подписка на музыку? Паника — мой компас земной, кажется, пора что-то делать!"
     menu:
         "Теперь перейти по ссылке":
+            voice "audio/voice_kostya/kostya26.mp3"
             p "Всё, я сломался! Жму! Лишь бы карточка работала, а то как я буду за шаурму платить?"
             jump branch_click_link
         "Зайти в официальное приложение банка":
-            p "Так, глубокий вдох. Открываем официальное приложение Федбанка. Палец на сканер... И-и-и... Барабанная дробь!"
-            p "В приложении всё в порядке."
+            voice "audio/voice_kostya/kostya27.mp3"
+            p "Так, глубокий вдох. Открываем официальное приложение Федбанка. Палец на сканер... И-и-и... Барабанная дробь! В приложении всё в порядке."
             "Хорошая концовка номер 3 — Спокойствие спасает."
             $ good_ending = True
             jump educational_summary
