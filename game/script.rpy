@@ -245,6 +245,7 @@ label branch_call_bank:
     show sotrudnik at sotrudnik_t, talk zorder 2
     show zadumchivy at kostya, listen zorder 1
 
+    voice "audio/voice_ilya/ilya1.mp3"
     op "Здравствуйте, Константин! Служба поддержки банка на связи. Чем могу, Вам, помочь?"
 
     show sotrudnik at sotrudnik_t, listen zorder 1
@@ -257,6 +258,7 @@ label branch_call_bank:
     show sotrudnik_laugh at sotrudnik_t, talk zorder 2
     show zadumchivy at kostya, listen zorder 1
 
+    voice "audio/voice_ilya/ilya2.mp3"
     op "*Смеётся* Константин, расслабьтесь. Мы проверили систему — никаких писем с требованием перейти по ссылке мы вам не отправляли.  Ваша карта в безопасности, а 18 тысяч всё ещё на месте."
 
     show sotrudnik_laugh at sotrudnik_t, listen zorder 1
@@ -269,6 +271,7 @@ label branch_call_bank:
     show sotrudnik at sotrudnik_t, talk zorder 2
     show zadumchivy at kostya, listen zorder 1
 
+    voice "audio/voice_ilya/ilya3.mp3"
     op "Рад, Вам, помочь! Хорошего вечера!"
     "Отличная концовка — Проверил источник."
     $ good_ending = True
