@@ -356,7 +356,7 @@ screen main_menu():
     ## заменять этот.
     tag menu
 
-    add "images/main_menu.png"
+    add "images/lvl1/main_menu.png"
 
     ## Эта пустая рамка затеняет главное меню.
     frame:
